@@ -2,6 +2,14 @@
 #include <string>
 #include "Device.h"
 
+void Device::init (unsigned int id, DeviceType type, std::string os)
+{
+	this->_os = os;
+	this->_id = id;
+	this->_type = type;
+	this->_active = true;
+}
+
 unsigned int Device::getID() const
 {
 	return _id;
@@ -25,11 +33,4 @@ void Device::activate()
 void Device::deactivate()
 {
 	_active = false;
-}
-void Device::init(unsigned int id, DeviceType type, std::string os)
-{
-	_os = os;
-	_id = id;
-	_type = type;
-	_active = true;
 }

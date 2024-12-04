@@ -4,38 +4,47 @@
 #include "UserList.h"
 
 
-void Profile::init(User owner)
+
+void Profile::init(const User& owner)
 {
-	_owner = owner;
+	this->_owner = owner;
+	this->_page = new Page();
+	this->_page.init();
+	this->_friendsList = new UserList();
+	this->_friendsList.init();
 }
+
 void Profile::clear()
 {
-	// _owner = nullptr; 
+	_friendsList->clear();
+	delete _page;
+	delete _friendsListss;
 }
-User Profile::getOwner()
+
+User Profile::getOwner() const
 {
 	return _owner;
 }
-void Profile::setStatus(std::string new_status)
+void Profile::setStatus(const std::string new_status)
 {
 	_page.setStatus(new_status);
 }
-void Profile::addPostToProfilePage(std::string post)
+void Profile::addPostToProfilePage(const std::string post)
 {
 	_page.addLineToPosts(post);
 }
-void Profile::addFriend(User friend_to_add)
+void Profile::addFriend(const User friend_to_add)
 {
 	_friendsList.add(friend_to_add);
 }
-std::string Profile::getPage()
+std::string Profile::getPage()const
 {
 	return
 		"user's status: " + _page.getStatus() + "\n" +
 		"******************** \n****************** \n" +
 		_page.getPosts();
 }
-//std::string Profile::getFriends()
+//std::string Profile::getFriends() const
 //{
 //	UserList* curr = &_friendsList;
 //	std::string friendsList = "";
@@ -45,7 +54,8 @@ std::string Profile::getPage()
 //		
 //	}
 //}
-std::string Profile::getFriendsWithSameNameLength()
+
+std::string Profile::getFriendsWithSameNameLength() const
 {
-	return "";
+	return " "; //
 }
